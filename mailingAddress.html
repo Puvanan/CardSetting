@@ -1,0 +1,596 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 5.0 -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+
+    <!-- Style-Puvan -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link href="http://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/fontawesome/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+
+    <title>Mailing Address</title>
+
+    <!-- MultiSelect -->
+    <!-- <link rel="stylesheet" href="docs/css/bootstrap-4.5.2.min.css" type="text/css"> -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="docs/css/bootstrap-example.min.css" type="text/css">
+    <link rel="stylesheet" href="docs/css/prettify.min.css" type="text/css">
+    <link rel="stylesheet" href="docs/css/fontawesome-5.15.1-web/all.css" type="text/css">
+    <script type="text/javascript" src="docs/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="docs/js/bootstrap.bundle-4.5.2.min.js"></script>
+    <script type="text/javascript" src="docs/js/prettify.min.js"></script>
+    <link rel="stylesheet" href="dist/css/bootstrap-multiselect.css" type="text/css">
+    <script type="text/javascript" src="dist/js/bootstrap-multiselect.js"></script>
+
+    
+    <style>
+        .dropdown-item.active,
+        .dropdown-item:active {
+            background-color: #ffffff !important;
+        }
+
+        #mailing {
+            width: 100%;
+            margin: 2px 0;
+        }
+
+        #postcode {
+            width: 100%;
+        }
+
+        .col-sm-12 input {
+            padding: 2px 0 2px 10px;
+        }
+
+        .digitPac input {
+            padding: 6px 10px;
+        }
+
+        .digitSecure input {
+            padding: 6px 10px;
+        }
+
+        #hToken {
+            padding: 6px 10px;
+        }
+
+        #secure {
+            padding: 6px 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="d-none d-lg-block" style="height:5vh;"></div>
+
+    <div class="container gx-1 gx-lg-0 mt-3 mt-lg-5 my-auto">
+        <div class="row mt-2 justify-content-center">
+            <div class="col-lg-10">
+                <div class="row justify-content-center ">
+                    <div class="col-12 col-lg-5 text-center">
+                        <img class="mb-3 img-fluid " style="width:300px; margin-top:-3rem"
+                            src="~/Images/WebDecoratives/Work risk-free.svg" />
+                        <h3>Mailing Address</h3>
+                        <p>
+                            Maintain your mailing address, for us to send any important mail to your address
+                            directly.
+                        </p>
+                    </div>
+
+                    <div id="firstPage" class="col-12 col-lg-8">
+
+                        <div class="row mb-2">
+                            <label class="col-sm-12 col-form-label">For Account</label>
+                            <div class="col-sm-12 my-1">
+                                <select id="example-selectAllText" multiple="multiple">
+                                    <option>40001518</option>
+                                    <option>95774453</option>
+                                    <option>12354898</option>
+                                    <option>12354891</option>
+                                    <option>14680642</option>
+                                    <option>54670423</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <label class="col-sm-12 col-form-label">Address</label>
+                            <div class="col-sm-12 my-1" disabled>
+                                <input type="text" id="mailing" name="mailing" placeholder="Address 1"><br>
+                                <input type="text" id="mailing" name="mailing" placeholder="Address 2"><br>
+                                <input type="text" id="mailing" name="mailing" placeholder="Address 3">
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <label class="col-sm-12 col-form-label">Postcode</label>
+                            <div class="col-sm-12 my-1">
+                                <input type="text" id="postcode" name="postcode" placeholder="Postcode">
+                            </div>
+                        </div>
+
+                        <div class="row myFA1 mb-2">
+                            <label class="col-sm-12 col-form-label">Approve this update with</label>
+                            <div class="col-sm-12 mb-2">
+                                <select class="form-select" aria-label="Default select example" id="auth">
+                                    <option value="pac">PAC</option>
+                                    <option value="token">Hard Token</option>
+                                    <option value="secure">Secured SignIn</option>
+                                    <option value="noti">Push Notification</option>
+                                </select>
+
+
+                            </div>
+                            <div class="col-sm-12">
+
+                                <div class="row myFA2" id="PAC" mt-2>
+
+                                    <div class="zz col-3">
+                                        <label for="PAC" class="col-sm-3 col-form-label"> <img
+                                                src="/puvan/icon/twoFA/otp.png" alt="" width="100" height="100"></label>
+                                    </div>
+
+                                    <div class="digitPac col-6">
+
+                                        <input type="text" class="form-control" id="PAC">
+
+                                        <p class="text-muted">A 6 digit PAC will be sent to your registered mobile phone
+                                            number
+                                            *****6168. Please click "Request PAC" if you wish to proceed</p>
+
+                                    </div>
+
+                                    <div class="col-3">
+                                        <a class="btn btn-info pac text-white float-lg-end" id="reqPacBtn">Request
+                                            PAC</a>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row myFA3 d-none" id="token" mt-2>
+
+                                    <div class="zz col-3">
+                                        <label for="hToken" class="col-sm-3 col-form-label"><img
+                                                src="/puvan/icon/twoFA/securesigntoken.png" alt="" width="90"
+                                                height="120"></label>
+                                    </div>
+
+                                    <div class="col-9">
+
+                                        <p class="text-muted">Switch on your SecureSign token and follow the instrution
+                                            below to
+                                            generate on your SecureSign Code.</p>
+
+                                        <ol>
+                                            <li>Press "sign" button. You will see a '1' display on the screen.</li>
+                                            <li>Enter xxxxx and press 'OK'.</li>
+                                            <li>You will see a '2" dispaly on screen.</li>
+                                            <li>Enter xxxx and press 'OK.'</li>
+                                            <li>The SecureSign will be displayed on screen.</li>
+                                        </ol>
+
+                                        <input type="text" class="form-control" id="hToken"
+                                            placeholder="Enter your SecureSign Code">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row myFA4 d-none" id="noti" mt-2>
+
+                                    <div class="zz col-3">
+                                        <label for="notification" class="col-sm-3 col-form-label"><img
+                                                src="/puvan/icon/twoFA/success.png" alt="" width="90"
+                                                height="90"></label>
+                                    </div>
+
+                                    <div class="col-6">
+
+                                        <p>A push notification will be sent to your mobile phone. Please verify the
+                                            details
+                                            at
+                                            your PB SecureSign screen before approving transaction.</p>
+
+                                    </div>
+
+                                    <div class="col-3">
+                                        <a class="btn btn-info pac text-white float-lg-end" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">Push Notification</a>
+
+                                        <!-- Modal -->
+
+                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                            aria-hidden="true">
+
+                                            <div class="modal-dialog modal-dialog-centered">
+
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">PB SecureSign
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+                                                        <div class="container-fluid">
+
+                                                            <div class="row">
+
+                                                                <div class="col-sm-12 d-flex justify-content-center">
+                                                                    <img src="/puvan/icon/twoFA/animation_500_kugn1p08.gif"
+                                                                        alt="" width="300" height="300">
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+                                                                    <p>Please check your mobile device (Iphone12) for a
+                                                                        push
+                                                                        notification to approve the transacion</p>
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+
+                                                                    <div class="progress">
+
+                                                                        <div class="progress-bar bg-danger active"
+                                                                            role="progressbar" aria-valuenow="0"
+                                                                            aria-valuemin="0" aria-valuemax="100"
+                                                                            style="width:0%">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row myFA5 d-none" id="secure" mt-2>
+
+                                    <div class="zz col-3">
+                                        <label for="secure" class="col-sm-3 col-form-label"><img
+                                                src="/puvan/icon/twoFA/kp2.png" alt="" width="90" height="90"></label>
+                                    </div>
+
+                                    <div class="col-9">
+
+                                        <p class="text-muted">Open your PB engage mobile app and follow the instruction
+                                            below to
+                                            generate your SecurePac</p>
+
+                                        <ol>
+                                            <li>Launch your PB engage mobile app.</li>
+                                            <li>From the side menu, select "PB SecureSign".</li>
+                                            <li>Verify the transaction details before you click "proceed".</li>
+                                            <li>Enter your SecurePIN or authentucate with your fingerpint/Face ID</li>
+                                            <li>The 6 digits SecurePAC will be displayed on the screen</li>
+                                        </ol>
+
+                                        <input type="text" class="form-control" id="secure"
+                                            placeholder="Enter SecurePAC">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row my-5 last-row">
+                            <div class="col-12">
+                                <a class="btn btn-dark float-start" href="@Url.Action(" CardSettings", "Home" )">
+                                    Back
+                                </a>
+                                <a id="firstNext" class="btn btn-primary  float-end"> Next </a>
+                            </div>
+                        </div>
+
+                        <div class="row my-5">
+                            <div class="alert alert-info" role="alert">
+                                <h3>Note</h3>
+                                <ul>
+                                    <li>Any change mailing address requests through PbeBank.com will be construed as
+                                        written requests by customers to execute the change of address of the affected
+                                        accounts.</li>
+                                    <li>Change mailing address requests will not be executed immediately. These requests
+                                        will be executed by your account holding branch accordingly.</li>
+                                    <li>For Credit/ Debit card contact details, please update information in Change
+                                        Credit/ Debit Card contact information tab.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div hidden id="secondPage" class="col-12 col-lg-8 mt-3 px-5">
+                        <div class="p-5 shadow bg-white rounded-8">
+
+                            <div id="my-print">
+                                <div class="row detailzRow d-flex mb-2">
+
+                                    <div class="row logoRow">
+
+                                        <div class="col-lg-2 col-2 checkIconDIV">
+
+                                            <table style="height: 100%; width: 100%;">
+
+                                                <tbody>
+
+                                                    <tr>
+
+                                                        <td id="success" style="vertical-align: middle;">
+                                                            <img src="/puvan/icon/primary/success.png" alt=""
+                                                                width="60px" height="60px">
+                                                        </td>
+
+                                                    </tr>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-10 checkTextDIV mt-1">
+
+                                            <table style="height: 100%; width: 100%;">
+
+                                                <tbody>
+
+                                                    <tr>
+
+                                                        <td style="vertical-align: middle;">
+                                                            <label class="lbl1">Mailing Address Changed
+                                                                Successful</label>
+                                                            <br>
+                                                            <label>4 May 2018, 12:59:12pm</label>
+                                                        </td>
+
+                                                    </tr>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="input__container">
+
+                                    <div class="row detailsRow">
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 leftReference">
+                                            <label>Reference Number</label>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 rightReference">
+                                            <label>RR232382989FH</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row detailsRow">
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 leftReference">
+                                            <label>Name</label>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 rightReference">
+                                            <label>Kwek Kian Sheng</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row detailsRow">
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 leftReference">
+                                            <label>Accounting Holding Branch</label>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 rightReference">
+                                            <label>KL Main Office</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row detailsRow">
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 leftReference">
+                                            <label>Type of Account</label>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-12 col -sm-12 col-xs-12 rightReference">
+                                            <label>Savings</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row detailsRow">
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 leftReference">
+                                            <label>Account</label>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 rightReference">
+                                            <label>xxxxxxxxx-xxxx</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row my-5 last-row">
+                            <div class="col-12">
+                                <a class="btn btn-dark float-start" onclick="window.print()"> Print </a>
+                                <a id="secondNext" class="btn btn-primary  float-end" href="@Url.Action("
+                                    CardSettings", "Home" )"> Complete </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('.mobileNav').each(function () {
+                $(this).removeClass('active');
+            })
+
+            $('.nav-link').each(function () {
+                $(this).removeClass('active');
+            })
+
+            $('.profile').each(function () {
+                $(this).addClass('active');
+            });
+
+            $('.profileMenu').addClass('active');
+
+            $('#firstNext').on('click', function () {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Submit'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#secondPage').attr('hidden', false);
+                        $('#firstPage').attr('hidden', true);
+                        Swal.fire(
+                            'Changed!',
+                            'Your mailing address has been changed.',
+                            'success'
+                        )
+                    }
+                })
+            });
+
+            $('#reqPacBtn').on('click', function () {
+                console.log('test');
+                Swal.fire(
+                    'OTP is Sent!',
+                    'OTP sent to your phone number 012 - * * * * 123',
+                    'success'
+                )
+            })
+
+            $('#example-selectAllText').multiselect({
+                includeSelectAllOption: true,
+                nonSelectedText: "Select Account Number",
+                buttonWidth: '100%',
+                buttonClass: "bg-transparent border border-1 border-secondary text-start py-1 ps-2 rounded-2 form-select",
+                buttonTextAlignment: 'left',
+                includeSelectAllOption: true,
+                widthSynchronizationMode: 'always',
+                enableFiltering: true,
+                selectAllText: 'Select all',
+            });
+        });
+
+
+
+        // enhanced ui for authentication script
+
+        $("#auth").change(function () {
+            console.log("test");
+            var cases = $("#auth option:selected").val();
+            if (cases == "pac") {
+                $("#PAC").removeClass("d-none");
+                $("#secure").addClass("d-none");
+                $("#noti").addClass("d-none");
+                $("#token").addClass("d-none");
+            }
+            if (cases == "token") {
+                $("#token").removeClass("d-none");
+                $("#PAC").addClass("d-none");
+                $("#signin").addClass("d-none");
+                $("#noti").addClass("d-none");
+            }
+            if (cases == "secure") {
+                $("#secure").removeClass("d-none");
+                $("#PAC").addClass("d-none");
+                $("#token").addClass("d-none");
+                $("#noti").addClass("d-none");
+            }
+            if (cases == "noti") {
+                $("#noti").removeClass("d-none");
+                $("#PAC").addClass("d-none");
+                $("#token").addClass("d-none");
+                $("#secure").addClass("d-none");
+            }
+        }
+        );
+
+        var progressBar = $('.progress-bar');
+        var progressNumber = 0;
+
+        setInterval(function () {
+            progressNumber++;
+            progressBar.css('width', progressNumber + '%');
+            progressBar.attr('aria-valuenow', progressNumber);
+        }, 500);
+
+    </script>
+
+</body>
+
+</html>
